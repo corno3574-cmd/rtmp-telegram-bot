@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: rtmp-bot
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      apt-get update && apt-get install -y ffmpeg
+    startCommand: python main.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: CHAT_ID
+        sync: false
+      - key: PORT
+        value: 10000
